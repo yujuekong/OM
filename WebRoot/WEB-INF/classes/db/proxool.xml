@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- the proxool configuration can be embedded within your own application's. 
+	Anything outside the "proxool" tag is ignored. -->
+<something-else-entirely>
+    <proxool>
+        <alias>dbPool</alias>
+        <!--<driver-url>jdbc:oracle:thin:@192.168.10.198:1521:ORCL</driver-url>-->
+        <!--<driver-url>jdbc:oracle:thin:@120.24.209.91:1521:ORCL</driver-url>-->
+        <driver-url>jdbc:oracle:thin:@192.168.10.198:1521:ORCL</driver-url>
+        <driver-class>oracle.jdbc.OracleDriver</driver-class>
+        <driver-properties>
+            <property name="user" value="OM"/>
+            <property name="password" value="000000"/>
+        </driver-properties>
+        <!--自动重连 -->
+        <house-keeping-test-sql>select CURRENT_DATE from dual</house-keeping-test-sql>
+        <!--proxool自动侦查各个链接状态的毫秒数，侦查到空闲的链接就马上回收，超时的销毁。 -->
+        <house-keeping-sleep-time>90000</house-keeping-sleep-time>
+        <!--当连接忙时等候的最大请求数,超过这个请求将不再接收。 -->
+        <maximum-new-connections>50</maximum-new-connections>
+        <!--一次产生连接的数量。但不能超过最大连接数。 -->
+        <prototype-count>3</prototype-count>
+        <!--最大连接数量，如果超过最大连接数量则会抛出异常。连接数设置过多， 服务器CPU和内存性能消耗很大。 -->
+        <maximum-connection-count>20</maximum-connection-count>
+        <!--最小连接数量 -->
+        <minimum-connection-count>3</minimum-connection-count>
+        <test-before-use>true</test-before-use>
+        <test-after-use>true</test-after-use>
+    </proxool>
+</something-else-entirely>

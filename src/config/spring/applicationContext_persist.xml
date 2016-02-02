@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:db/hibernate.cfg.xml">
+        </property>
+    </bean>
+    <!-- 使用 annotation -->
+    <context:annotation-config/>
+    <!-- 使用annotation自动注册bean -->
+    <context:component-scan base-package="com.smart.om"/>
+
+    <!-- 基础DAO -->
+    <bean id="baseDao" class="com.smart.om.dao.base.BaseDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 系统功能菜单DAO -->
+    <bean id="sysMenuDAO" class="com.smart.om.dao.sys.SysMenuDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysMenu</value>
+        </property>
+    </bean>
+    <!-- 系统用户DAO -->
+    <bean id="sysUserDAO" class="com.smart.om.dao.sys.SysUserDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysUser</value>
+        </property>
+    </bean>
+    <!-- 系统日志DAO -->
+    <bean id="sysLogDAO" class="com.smart.om.dao.sys.SysLogDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysLog</value>
+        </property>
+    </bean>
+    <!-- 系统组织机构DAO -->
+    <bean id="sysOrgDAO" class="com.smart.om.dao.sys.SysOrgDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysOrg</value>
+        </property>
+    </bean>
+    <!-- 系统部门DAO -->
+    <bean id="sysDeptDAO" class="com.smart.om.dao.sys.SysDeptDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysDept</value>
+        </property>
+    </bean>
+    <!-- 系统数据字典DAO -->
+    <bean id="sysDictDAO" class="com.smart.om.dao.sys.SysDictDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysDict</value>
+        </property>
+    </bean>
+    <!-- 系统角色DAO -->
+    <bean id="sysRoleDAO" class="com.smart.om.dao.sys.SysRoleDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysRole</value>
+        </property>
+    </bean>
+    <!-- 系统用户角色DAO -->
+    <bean id="sysUserRoleDAO" class="com.smart.om.dao.sys.SysUserRoleDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysUserRole</value>
+        </property>
+    </bean>
+    <!-- 系统角色权限DAO -->
+    <bean id="sysRoleAuthDAO" class="com.smart.om.dao.sys.SysRoleAuthDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysRoleAuth</value>
+        </property>
+    </bean>
+    <!-- 合同DAO -->
+    <bean id="sysContractDAO" class="com.smart.om.dao.sys.SysContractDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysContract</value>
+        </property>
+    </bean>
+    <!-- 用户操作DAO -->
+    <bean id="sysUserOpDAO" class="com.smart.om.dao.sys.SysUserOpDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysUserOp</value>
+        </property>
+    </bean>
+    <!-- 用户会员DAO -->
+    <bean id="sysMemberDAO" class="com.smart.om.dao.sys.SysMemberDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.SysMember</value>
+        </property>
+    </bean>
+
+    <!-- 配送计划DAO -->
+    <bean id="dispatchingPlanDAO" class="com.smart.om.dao.dispatching.DispatchingPlanDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingPlan</value>
+        </property>
+    </bean>
+    <!-- 配送站点DAO -->
+    <bean id="dispatchingNodeDAO" class="com.smart.om.dao.dispatching.DispatchingNodeDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingNode</value>
+        </property>
+    </bean>
+    <!-- 配送商品DAO -->
+    <bean id="dispatchingGoodsDAO" class="com.smart.om.dao.dispatching.DispatchingGoodsDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingGoods</value>
+        </property>
+    </bean>
+    <!-- 配送订单DAO -->
+    <bean id="dispatchingOrderDAO" class="com.smart.om.dao.dispatching.DispatchingOrderDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingOrder</value>
+        </property>
+    </bean>
+    <!-- 配送子订单DAO -->
+    <bean id="dispatchingSubOrderDAO" class="com.smart.om.dao.dispatching.DispatchingSubOrderDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingSubOrder</value>
+        </property>
+    </bean>
+    <!-- 配送特勤小组DAO -->
+    <bean id="dispatchingTeamDAO" class="com.smart.om.dao.dispatching.DispatchingTeamDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingTeam</value>
+        </property>
+    </bean>
+
+    <!-- 广告主DAO -->
+    <bean id="advertUserDAO" class="com.smart.om.dao.advert.AdvertUserDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.AdvertUser</value>
+        </property>
+    </bean>
+    <!-- 广告内容DAO -->
+    <bean id="advertInfoDAO" class="com.smart.om.dao.advert.AdvertInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.AdvertInfo</value>
+        </property>
+    </bean>
+    <!-- 广告位置DAO -->
+    <bean id="advertPositionDAO" class="com.smart.om.dao.advert.AdvertPositionDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.AdvertDevice</value>
+        </property>
+    </bean>
+
+    <!-- 设备类型DAO -->
+    <bean id="deviceTypeDAO" class="com.smart.om.dao.device.DeviceTypeDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceType</value>
+        </property>
+    </bean>
+    <!-- 设备信息DAO -->
+    <bean id="deviceInfoDAO" class="com.smart.om.dao.device.DeviceInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceInfo</value>
+        </property>
+    </bean>
+    <!-- 设备清洗DAO -->
+    <bean id="deviceCleanDAO" class="com.smart.om.dao.device.DeviceCleanDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceClean</value>
+        </property>
+    </bean>
+    <!-- 设备维修DAO -->
+    <bean id="deviceMaintenanceDAO" class="com.smart.om.dao.device.DeviceMaintenanceDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceMaintenance</value>
+        </property>
+    </bean>
+    <!-- 设备维修明细DAO -->
+    <bean id="deviceMaintenanceDtlDAO" class="com.smart.om.dao.device.DeviceMaintenanceDtlDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceMaintenanceDtl</value>
+        </property>
+    </bean>
+    <!-- 设备存放商品DAO -->
+    <bean id="deviceGoodsDAO" class="com.smart.om.dao.device.DeviceGoodsDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceGoods</value>
+        </property>
+    </bean>
+    <!-- 设备格子DAO -->
+    <bean id="deviceGridDAO" class="com.smart.om.dao.device.DeviceGridDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceGrid</value>
+        </property>
+    </bean>
+    <!--商品类型DAO-->
+    <bean id="goodsTypeDao" class="com.smart.om.dao.goods.GoodsTypeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.GoodsType</value>
+        </property>
+    </bean>
+    <!--商品信息DAO-->
+    <bean id="GoodsInfoDao" class="com.smart.om.dao.goods.GoodsInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.GoodsInfo</value>
+        </property>
+    </bean>
+    <!--仓库DAO-->
+    <bean id="WarehouseDao" class="com.smart.om.dao.inventory.WarehouseDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageWarehouse</value>
+        </property>
+    </bean>
+    <!--入库单DAO-->
+    <bean id="WarehousingEntryDAO" class="com.smart.om.dao.inventory.WarehousingEntryDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageWarehousingEntry</value>
+        </property>
+    </bean>
+    <!--出库单DAO-->
+    <bean id="DeliveryOrderDAO" class="com.smart.om.dao.inventory.DeliveryOrderDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageDeliveryOrder</value>
+        </property>
+    </bean>
+    <!--出库清洗DAO-->
+    <bean id="DeliveryAgentDAO" class="com.smart.om.dao.inventory.DeliveryAgentDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageDeliveryAgent</value>
+        </property>
+    </bean>
+    <!--调拨DAO-->
+    <bean id="allotDAO" class="com.smart.om.dao.inventory.AllotDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageAllot</value>
+        </property>
+    </bean>
+    <!--调拨明细DAO-->
+    <bean id="allotDtlDAO" class="com.smart.om.dao.inventory.AllotDtlDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageAllotDtl</value>
+        </property>
+    </bean>
+
+    <!--供应商DAO-->
+    <bean id="sellerInfoDAO" class="com.smart.om.dao.seller.SellerInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.SellerInfo</value>
+        </property>
+    </bean>
+    <!--供应商品DAO-->
+    <bean id="sellerGoodDAO" class="com.smart.om.dao.seller.SellerGoodDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.SellerGoods</value>
+        </property>
+    </bean>
+    <!--入库单明细DAO-->
+    <bean id="warehousingEntryDetailDAO" class="com.smart.om.dao.inventory.WarehousingEntryDetailDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageWarehousingDtl</value>
+        </property>
+    </bean>
+    <!--出库单明细DAO-->
+    <bean id="deliveryDetailDAO" class="com.smart.om.dao.inventory.DeliveryDetailDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageDeliveryDtl</value>
+        </property>
+    </bean>
+    <!--报损DAO-->
+    <bean id="debtDAO" class="com.smart.om.dao.inventory.DebtDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageDebt</value>
+        </property>
+    </bean>
+    <!--报损明细DAO-->
+    <bean id="debtDtlDAO" class="com.smart.om.dao.inventory.DebtDtlDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageDebtDtl</value>
+        </property>
+    </bean>
+    <!--库存DAO-->
+    <bean id="inventoryDAO" class="com.smart.om.dao.inventory.InventoryDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StorageInventory</value>
+        </property>
+    </bean>
+
+    <!--车辆信息DAO-->
+    <bean id="carInfoDao" class="com.smart.om.dao.car.CarInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.CarInfo</value>
+        </property>
+    </bean>
+    <bean id="carLineDao" class="com.smart.om.dao.car.CarLineDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.CarLine</value>
+        </property>
+    </bean>
+    <bean id="carLineNodeDAO" class="com.smart.om.dao.car.CarLineNodeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.CarLineNode</value>
+        </property>
+    </bean>
+    <bean id="serviceSellerDAO" class="com.smart.om.dao.region.ServiceSellerDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.MotionDistrict</value>
+        </property>
+    </bean>
+
+    <!--支付信息DAO-->
+    <bean id="payInfoDAO" class="com.smart.om.dao.pay.PayInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.PayInfo</value>
+        </property>
+    </bean>
+    <!--销售信息DAO-->
+    <bean id="saleInfoDAO" class="com.smart.om.dao.sale.SaleInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.SaleInfo</value>
+        </property>
+    </bean>
+    <!--优惠劵DAO-->
+    <bean id="couponDAO" class="com.smart.om.dao.sale.CouponDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.ActivityCoupon</value>
+        </property>
+    </bean>
+    <bean id="memberCouponDAO" class="com.smart.om.dao.sale.MemberCouponDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.ActivityMemberCoupon</value>
+        </property>
+    </bean>
+    <!--现金管理DAO-->
+    <bean id="PayCashDAO" class="com.smart.om.dao.pay.PayCashDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.PayDeviceCash</value>
+        </property>
+    </bean>
+    <!--配送计划DAO-->
+    <bean id="DispatchPlanDAO" class="com.smart.om.dao.region.DispatchPlanDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingPlan</value>
+        </property>
+    </bean>
+    <!-- 配送小组DAO -->
+    <bean id="dispatchTeamDAO" class="com.smart.om.dao.region.DispatchingTeamDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.DispatchingTeam</value>
+        </property>
+    </bean>
+    <!-- 巡检DAO -->
+    <bean id="deviceMaintainDao" class="com.smart.om.dao.maintain.DeviceMaintainDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.DeviceMaintain</value>
+        </property>
+    </bean>
+    <!-- 抽奖活动DAO -->
+    <bean id="gameInfoDao" class="com.smart.om.dao.sale.GameInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.ActivityGameInfo</value>
+        </property>
+    </bean>
+    <!-- 积分活动DAO -->
+    <bean id="integralDAO" class="com.smart.om.dao.sale.IntegralDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.ActivityIntegrlBill</value>
+        </property>
+    </bean>
+    <!-- 活动奖励DAO -->
+    <bean id="gamePrizeDAO" class="com.smart.om.dao.sale.GamePrizeDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.ActivityGamePrize</value>
+        </property>
+    </bean>
+    <!--支付订单DAO-->
+    <bean id="OrderPay" class="com.smart.om.dao.sale.OrderPayDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.OrderPay</value>
+        </property>
+    </bean>
+    <!--商品积分DAO-->
+    <bean id="GoodsIntegral" class="com.smart.om.dao.sale.GoodsIntegralDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="poName">
+            <value>com.smart.om.persist.GoodsIntegral</value>
+        </property>
+    </bean>
+    <!-- 车辆位置DAO -->
+    <bean id="carTrackDao" class="com.smart.om.dao.car.CarTrackDAO">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    	<property name="poName">
+    		<value>com.smart.om.persist.CarTrack</value>
+    	</property>
+    </bean>
+     <!-- GPS设备DAO -->
+    <bean id="gpsDeviceDao" class="com.smart.om.dao.car.GpsDeviceDAO">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    	<property name="poName">
+    		<value>com.smart.om.persist.GpsDevice</value>
+    	</property>
+    </bean>
+	<!-- 统计报表 -->
+    <bean id="statementDAO" class="com.smart.om.dao.statement.StatementDAO">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    	<property name="poName">
+    		<value>com.smart.om.persist.StatisticalStatement</value>
+    	</property>
+    </bean>
+
+    <bean id="goodsReportDao" class="com.smart.om.dao.report.GoodsReportDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="poName">
+            <value>com.smart.om.persist.StatisticalStatement</value>
+        </property>
+    </bean>
+
+    <!-- 要调用的工作类 -->
+    <bean id="myJob" class="com.smart.om.web.QuartzJob"></bean>
+	<!-- 定义调用对象和调用对象的方法 -->
+    <!-- job的配置开始 -->
+    <bean id="myJobDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- <property name="group" value="job_work" />
+		<property name="name" value="job_work_name" />-->
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false"/>
+        <property name="targetObject">
+            <ref bean="myJob"/>
+        </property>
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+    </bean>
+    <!-- job的配置结束 -->
+    <!-- 调度的配置开始 -->
+    <bean id="crontestJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <!-- <property name="name" value="work_default_name" />
+		<property name="group" value="work_default" />-->
+        <property name="jobDetail">
+            <ref bean="myJobDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!-- 一分钟
+           <value>0 0/1 * 1/1 * ? * </value>-->
+            <!-- 每天5点  -->
+            <value>0 0 17 1/1 * ? *</value>
+        </property>
+    </bean>
+    <!-- 调度的配置结束 -->
+    
+    <!-- 要调用的工作类 -->
+    <bean id="quartzSaleInfo" class="com.smart.om.web.sale.QuartzSale"></bean>
+    <!-- 定义调用对象和调用对象的方法 -->
+    <!-- job的配置开始 -->
+    <bean id="quartzSaleInfoDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- <property name="group" value="job_work" />
+		<property name="name" value="job_work_name" />-->
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false"/>
+        <property name="targetObject">
+            <ref bean="quartzSaleInfo"/>
+        </property>
+        <property name="targetMethod">
+            <value>saleInfoInterface</value>
+        </property>
+    </bean>
+     <!-- job的配置结束 -->
+     
+    <!-- 调度的配置开始 -->
+    <bean id="crontestQuartzSaleInfoTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzSaleInfoDetail"/>
+        </property>
+        <property name="cronExpression">
+           <!-- 一分钟 
+           <value>0 0/1 * 1/1 * ? * </value>-->
+           <!-- 每天凌晨1点-->
+           <value>0 0 1 1/1 * ? * </value>
+           <!-- 一天  
+           <value>0 0 12 1/1 * ? *</value>-->
+        </property>
+    </bean>
+    <!-- 调度的配置结束 -->
+    
+     <!-- 要调用的工作类 -->
+    <bean id="gpsLocations" class="com.smart.om.web.GpsLocationReceive"></bean>
+    <!-- 定义调用对象和调用对象的方法 -->
+    <!-- job的配置开始 -->
+    <bean id="gpsLocationsDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="group" value="job_work" />
+		<property name="name" value="job_work_name" />
+        <!-- false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false"/>
+        <property name="targetObject">
+            <ref bean="gpsLocations"/>
+        </property>
+        <property name="targetMethod">
+            <value>gpsLocationInteface</value>
+        </property>
+    </bean>
+     <!-- job的配置结束 -->
+   <!-- 调度的配置开始 -->
+    <bean id="crontestGpsLocationsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="gpsLocationsDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!-- 一分钟 -->
+           <value>0 0/1 * 1/1 * ? * </value>
+         <!-- 一天   -->
+           <!-- <value>0 0 12 1/1 * ? *</value> -->
+        </property>
+    </bean>
+    <!-- 调度的配置结束 -->
+    
+    <!-- 要调用的工作类 -->
+    <bean id="userCoord" class="com.smart.om.web.sys.SysUserAction"></bean>
+	<!-- 定义调用对象和调用对象的方法 -->
+    <!-- job的配置开始 -->
+    <bean id="userCoordDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false"/>
+        <property name="targetObject">
+            <ref bean="userCoord"/>
+        </property>
+        <property name="targetMethod">
+            <value>updateUserCoord</value>
+        </property>
+    </bean>
+    <!-- job的配置结束 -->
+    <!-- 调度的配置开始 -->
+    <bean id="crontestUserCoordTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="userCoordDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!-- 一分钟--> 
+           <value>0 0/1 * 1/1 * ? * </value>
+            <!-- 每天5点 
+            <value>0 0 17 1/1 * ? *</value>-->
+        </property>
+    </bean>
+    <!-- 调度的配置结束 -->
+    
+    <!-- 要调用的工作类 -->
+    <bean id="statementJob" class="com.smart.om.web.QuartzJob"></bean>
+	<!-- 定义调用对象和调用对象的方法 -->
+    <!-- job的配置开始 -->
+    <bean id="statementJobDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false"/>
+        <property name="targetObject">
+            <ref bean="statementJob"/>
+        </property>
+        <property name="targetMethod">
+            <value>statisticalStatement</value>
+        </property>
+    </bean>
+    <!-- job的配置结束 -->
+    <!-- 调度的配置开始 -->
+    <bean id="statementJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <!-- <property name="name" value="work_default_name" />
+		<property name="group" value="work_default" />-->
+        <property name="jobDetail">
+            <ref bean="statementJobDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!-- 一分钟
+            <value>0 0/1 * 1/1 * ? * </value>-->
+            <!-- 每个月的第一天-->
+            <value>0 0 12 1 1/1 ? *</value>
+        </property>
+    </bean>
+    <!-- 调度的配置结束 -->
+    
+    <!-- 启动触发器的配置开始 -->
+    <bean name="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <!-- <ref bean="crontestJobTrigger"/>
+                <ref bean="crontestQuartzSaleInfoTrigger"/>
+                <ref bean="crontestGpsLocationsTrigger"/>
+                <ref bean="crontestUserCoordTrigger"/> -->
+                <ref bean="statementJobTrigger"/>
+            </list>
+        </property>
+    </bean>
+</beans>

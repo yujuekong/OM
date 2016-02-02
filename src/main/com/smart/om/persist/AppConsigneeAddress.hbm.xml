@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.smart.om.persist.AppConsigneeAddress" table="APP_CONSIGNEE_ADDRESS" >
+        <id name="consigneeAddressId" type="java.lang.Integer">
+            <column name="CONSIGNEE_ADDRESS_ID" precision="8" scale="0" />
+            <generator class="sequence" />
+        </id>
+        <property name="consumeRecordId" type="java.lang.Integer">
+            <column name="CONSUME_RECORD_ID" precision="8" scale="0"/>
+        </property>
+        <property name="tel" type="java.lang.String">
+            <column name="TEL" length="20" />
+        </property>
+        <property name="userRealName" type="java.lang.String">
+            <column name="USER_REAL_NAME" length="20"/>
+        </property>
+        <property name="userAddress" type="java.lang.String">
+            <column name="USER_ADDRESS" length="200" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" length="20" />
+        </property>
+        <property name="region" type="java.lang.String">
+            <column name="REGION" length="20" />
+        </property>
+        <property name="town" type="java.lang.String">
+            <column name="TOWN" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

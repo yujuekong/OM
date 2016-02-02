@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.smart.om.persist.OrderPay" table="ORDER_PAY">
+        <id name="payId" type="java.lang.Integer">
+            <column name="PAY_ID" precision="8" scale="0" />
+            <generator class="sequence">
+            	<param name="sequence">SEQ_DEVICE_TYPE</param>
+            </generator>
+        </id>
+        <property name="payNumber">
+            <column name="PAY_NUMBER" length="50"/>
+        </property>
+        <property name="goodsId">
+            <column name="GOODS_ID" precision="8"/>
+        </property>
+        <property name="goodsName">
+            <column name="GOODS_NAME" length="40"/>
+        </property>
+        <property name="goodsNumber">
+            <column name="GOODS_NUMBER" length="20"/>
+        </property>
+        <property name="goosUnit">
+            <column name="GOOS_UNIT" length="20"/>
+        </property>
+        <property name="userRealName">
+            <column name="USER_REAL_NAME" length="20"/>
+        </property>
+        <property name="tel">
+            <column name="TEL" length="20"/>
+        </property>
+        <property name="userAddress">
+            <column name="USER_ADDRESS" length="200"/>
+        </property>
+        <property name="orderNo">
+            <column name="ORDER_NO" length="100"/>
+        </property>
+        <property name="orderStatus">
+            <column name="ORDER_STATUS" length="100"/>
+        </property>
+        <property name="orderTime">
+            <column name="ORDER_TIME" length="100"/>
+        </property>
+        <property name="city">
+            <column name="CITY" length="20"/>
+        </property>
+        <property name="region">
+            <column name="REGION" length="20"/>
+        </property>
+        <property name="town">
+            <column name="TOWN" length="20"/>
+        </property>
+        <property name="openId">
+            <column name="OPEN_ID" length="50"/>
+        </property>
+        <property name="isGet">
+            <column name="IS_GET" length="4"/>
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="PRICE" precision="8" scale="2"></column>
+        </property>
+        <property name="isRefund">
+            <column name="IS_REFUND" length="4"/>
+        </property>
+        <property name="deviceId" type="java.lang.Integer">
+            <column name="DEVICE_ID" precision="8" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>

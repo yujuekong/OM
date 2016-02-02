@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.smart.om.persist.CarTrack" table="CAR_TRACK" >
+        <id name="trackId" type="java.lang.Integer">
+            <column name="TRACK_ID" precision="8" scale="0" />
+            <generator class="sequence" />
+        </id>
+        <property name="carId" type="java.lang.Integer">
+            <column name="CAR_ID" length="8" />
+        </property>
+        <property name="createDate" type="java.lang.String">
+            <column name="CREATE_DATE" length="20" />
+        </property>
+        <property name="carLng" type="java.lang.String">
+            <column name="CAR_LNG" length="40" />
+        </property>
+        <property name="carLat" type="java.lang.String">
+            <column name="CAR_LAT" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>
